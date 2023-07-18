@@ -1,43 +1,27 @@
-import {defineField, defineType} from 'sanity'
+import { defineType} from 'sanity'
 
 export default defineType({
     name: 'featured',
-    title: 'Features',
+    title: 'Featured Restaurants',
     type: 'document',
     fields: [
         {
         name: 'name',
         type: 'string',
-        title: 'Category Name',
-        validation: rule => rule.required()
-        },
-        {
+        title: 'Restaurant name',
+        validation: rule=> rule.required(),
+    },
+    {
         name: 'description',
         type: 'string',
-        title: 'Dish Description',
-        validation: rule => rule.required()
-        },
-        {
-        name: 'image1',
-        type: 'image',
-        title: 'Image of the Dish',
-        validation: rule => rule.required()
-        },
-        {
-        name: 'image2',
-        type: 'image',
-        title: 'Image of the Dish',
-        },
-        {
-        name: 'image3',
-        type: 'image',
-        title: 'Image of the Dish',
-        },
-        {
-        name: 'price',
-        type: 'number',
-        title: 'Price of the dish',
-        },
-
+        title: 'Description',
+        validation: rule=> rule.max(200),
+    },
+    {
+        name: 'restaurants',
+        type: 'array',
+        title: 'Restaurants',
+        of: [{type: 'reference', to: [{type: 'restaurant'}]}]
+    }
     ],
 })
